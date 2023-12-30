@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: gateway-keycloak-k8s
+spec:
+  selector:
+    matchLabels:
+      app: gateway-keycloak-k8s
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: gateway-keycloak-k8s
+    spec:
+      containers:
+        - name: gateway-keycloak-k8s
+          image: neogicel/gw-springboot-keycloak:6.0
+# Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8089 
+

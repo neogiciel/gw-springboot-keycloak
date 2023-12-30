@@ -1,0 +1,6 @@
+#build
+docker build --tag "neogicel/gw-springboot-keycloak:1.0" .
+#run
+docker run -p 8089:8089 neogicel/gw-springboot-keycloak
+#push
+docker push neogicel/gw-springboot-keycloak:1.0

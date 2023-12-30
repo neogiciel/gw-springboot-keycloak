@@ -1,0 +1,76 @@
+########################
+# Serveur 
+########################
+server:
+  port: 8089
+
+########################
+# Serveur  Keycloak
+########################
+spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          #jwk-set-uri: http://localhost:8181/auth/realms/MyRealm/.well-known/openid-configuration
+          jwk-set-uri: http://key.neogiciel.com/realms/master/.well-known/openid-configuration
+      client:
+        provider:
+          keycloak:
+            #issuer-uri: http://localhost:8181/auth/realms/MyRealm
+            issuer-uri: http://key.neogiciel.com/realms/master
+        registration:
+          keycloak:
+           #realm: MyRealm
+           realm: master
+            #auth-server-url: http://localhost:8181/auth
+           auth-server-url: http://key.neogiciel.com
+           client-id: application-test
+           #client-secret: YP1sOmJNWygT7Frmr36GKcaX8qqvisiD
+           client-secret: JPulosifDBkyzJPejOltpmfi9C76EJ8B
+
+########################
+# Gateway
+########################
+  cloud:
+    gateway:
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: '*'
+#            allowedMethods:
+#             - GET
+#             - POST
+#            allowedHeaders: '*'
+#            maxAge: 30
+      routes:
+      - id: /
+        uri: http://dev2.neogiciel.com
+        predicates:
+        - Method=GET,POST
+      - id: test
+        uri: http://dev2.neogiciel.com
+        predicates:
+        - Method=GET,POST
+        - Path=/test/**
+      - id: security
+        uri: http://dev2.neogiciel.com
+        predicates:
+        - Path=/security
+        - Method=GET,POST
+      - id: api
+        uri: http://dev4.neogiciel.com
+        predicates:
+        - Path=/api
+        - Method=GET,POST
+
+#########################
+# prometheus
+#########################
+management.endpoints.web.exposure.include: prometheus
+management.endpoint.health.show-details: always
+management.metrics.tags.application: MonitoringSpringGatewayKeycloak
+
