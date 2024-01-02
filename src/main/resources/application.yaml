@@ -66,11 +66,6 @@ spring:
 #        predicates:
 #        - Path=/security
 #        - Method=GET,POST
-#      - id: api
-#        uri: http://dev4.neogiciel.com
-#        predicates:
-#        - Path=/api/**
-#        - Method=GET,POST
 
 #########################
 # prometheus
