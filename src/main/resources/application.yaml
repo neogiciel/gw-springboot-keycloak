@@ -47,25 +47,30 @@ spring:
 #            allowedHeaders: '*'
 #            maxAge: 30
       routes:
-      - id: /
-        uri: http://dev2.neogiciel.com
-        predicates:
-        - Method=GET,POST
+#      - id: /
+#        uri: http://dev2.neogiciel.com
+#        predicates:
+#        - Method=GET,POST
       - id: test
         uri: http://dev2.neogiciel.com
         predicates:
         - Method=GET,POST
         - Path=/test/**
-      - id: security
-        uri: http://dev2.neogiciel.com
-        predicates:
-        - Path=/security
-        - Method=GET,POST
       - id: api
         uri: http://dev4.neogiciel.com
         predicates:
-        - Path=/api
+        - Path=/api/**
         - Method=GET,POST
+#      - id: security
+#        uri: http://dev2.neogiciel.com
+#        predicates:
+#        - Path=/security
+#        - Method=GET,POST
+#      - id: api
+#        uri: http://dev4.neogiciel.com
+#        predicates:
+#        - Path=/api/**
+#        - Method=GET,POST
 
 #########################
 # prometheus
