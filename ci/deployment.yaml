@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: gateway-keycloak-k8s
-          image: neogicel/gw-springboot-keycloak:6.0
+          image: neogicel/gw-springboot-keycloak:8.1
 # Image that will be used to containers in the cluster
           imagePullPolicy: IfNotPresent
           ports:

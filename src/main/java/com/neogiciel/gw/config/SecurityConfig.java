@@ -7,10 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusReactiveJwtDecoder;
+//import org.springframework.security.config.http.SessionCreationPolicy;
+//import org.springframework.security.config.web.server.ServerHttpSecurity;
+//import org.springframework.security.oauth2.jwt.JwtDecoder;
+//import org.springframework.security.oauth2.jwt.NimbusReactiveJwtDecoder;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoder;
 import org.springframework.security.oauth2.jwt.ReactiveJwtDecoders;
 import org.springframework.security.web.server.SecurityWebFilterChain;
@@ -41,6 +41,7 @@ public class SecurityConfig {
       .pathMatchers("/unsecured").permitAll()
       .pathMatchers("/key").permitAll()
       .pathMatchers("/gettoken").permitAll()
+      .pathMatchers("/refreshtoken").permitAll()
       .pathMatchers("/test/**").permitAll()
       .pathMatchers("/api/**").authenticated()
       .pathMatchers("/actuator/**").permitAll()

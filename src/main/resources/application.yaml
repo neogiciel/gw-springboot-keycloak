@@ -58,15 +58,11 @@ spring:
         - Path=/test/**
       - id: api
         uri: http://dev4.neogiciel.com
+        #uri: http://localhost:8084
         predicates:
         - Path=/api/**
         - Method=GET,POST
-#      - id: security
-#        uri: http://dev2.neogiciel.com
-#        predicates:
-#        - Path=/security
-#        - Method=GET,POST
-
+      
 #########################
 # prometheus
 #########################
