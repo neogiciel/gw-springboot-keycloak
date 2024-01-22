@@ -1,6 +1,25 @@
+#docker build
+docker build -t neogicel/gw-springboot-keycloak .
+docker tag neogicel/gw-springboot-keycloak:4.0
+docker run -dit --name gw-springboot-keycloak -p 8084:80 neogicel/gw-springboot-keycloak
+
 #build
 docker build --tag "neogicel/gw-springboot-keycloak:1.0" .
 #run
-docker run -p 8089:8089 neogicel/gw-springboot-keycloak
+docker run -p 8089:8089 neogicel/gw-springboot-keycloak:1.0
 #push
 docker push neogicel/gw-springboot-keycloak:1.0
+
+#commande dans un pod
+kubectl logs quarkus-api-pn-k8s-7fd7cd445f-67cmd 
+kubectl exec -it quarkus-api-pn-k8s-7fd7cd445f-67cmd  -- sh
+
+#concourse
+D:\concourse\fly.exe --target=tutorial login --concourse-url=http://127.0.0.1:9000 --username=test --password=test
+D:\concourse\fly.exe --target=tutorial sync
+D:\concourse\fly.exe -t tutorial set-pipeline -p pn-angular -c ci/kube.yaml
+
+#git 
+git add .
+git commit -m "version 1"
+git push -u origin main  

@@ -30,7 +30,8 @@ spring:
            auth-server-url: http://key.neogiciel.com
            client-id: application-test
            #client-secret: YP1sOmJNWygT7Frmr36GKcaX8qqvisiD
-           client-secret: crGUrhH07XRrB2dYzGRg51KXpBYaVSKz
+           client-secret: qNjyFMmpRKtPafLhODI0S8863SXm8Fis
+           
 
 ########################
 # Gateway

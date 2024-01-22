@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: gateway-keycloak-k8s
+spec:
+  selector:
+    matchLabels:
+      app: gateway-keycloak-k8s
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: gateway-keycloak-k8s
+    spec:
+      containers:
+        - name: gateway-keycloak-k8s
+          image: neogicel/gw-springboot-keycloak:9.8
+# Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8089 
+
+---
+apiVersion: v1 # Kubernetes API version
+kind: Service # Kubernetes resource kind we are creating
+metadata: # Metadata of the resource kind we are creating
+  name: gateway-keycloak-k8s-svc
+spec:
+  selector:
+    app: gateway-keycloak-k8s
+  ports:
+    - protocol: "TCP"
+      port: 8089 # The port that the service is running on in the cluster
+      targetPort: 8089 # The port exposed by the service
+  type: NodePort 
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gateway-keycloak-k8s-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gateway-keycloak-k8s-svc
+            port:
+              number: 8089
