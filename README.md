@@ -104,10 +104,9 @@ Configuration des routes (via code source)
         return builder.routes()
                 .route(r -> r.path("/security")
                         .uri("http://dev2.neogiciel.com"))
-                        //.uri("http://localhost:8081"))
                 
-                //.route(r -> r.path("/test")
-                //        .uri("http://dev2.neogiciel.com"))
+                .route(r -> r.path("/test")
+                        .uri("http://dev2.neogiciel.com"))
 
                 .build();
     }
@@ -126,7 +125,7 @@ Lancement de l'application Spring-boot<br>
 $ mvn  clean
 $ mvn spring-boot:run
 ```
-Le service est accessible sur http://localhost:8088
+Le service est accessible sur http://localhost:8089
 
 ## FAQs
 ***
