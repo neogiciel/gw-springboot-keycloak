@@ -6,7 +6,7 @@
 
 ## Informations Générales
 ***
-Mise en place d'une Gateway qui s'appuit sur la solution Spring Cloud Gateway
+Mise en place d'une Gateway avec 
 ## Technologies
 ***
 Technologies utilisées:
@@ -15,6 +15,8 @@ Technologies utilisées:
 * Spring-boot: 3.2
 ## Instalation
 ***
+Deploiement de keyloack via docker-compose<br>
+
 Configuration de la route
 ```
  @Bean
