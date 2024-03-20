@@ -1,6 +1,6 @@
 ## <h1>Gateway Spring Boot basé sur Keycloack</h1>
 ***
-<img src="https://www.xpand-it.com/wp-content/uploads/2020/06/Keycloak-logo.png" alt="drawing" height="240px"/>
+<img src="https://www.xpand-it.com/wp-content/uploads/2020/06/Keycloak-logo.png" alt="drawing" height="200px"/>
 
 
 
