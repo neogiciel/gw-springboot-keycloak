@@ -17,7 +17,7 @@ Technologies utilisées:
 * Spring-boot: 3.1.2
 ## Instalation
 ***
-Deploiement de keyloack via docker-compose<br>
+Deploiement de keycloack via docker-compose<br>
 
 ```
 version: '3.9'
@@ -77,7 +77,7 @@ volumes:
 Lancement de keycloack:
 docker-compose up -d 
 
-Configuration de la sécurite
+Configuration de la sécurite: (via code source)
 ```
  
     http.cors().configurationSource(getCorsConfigurationSource()).and()
@@ -94,8 +94,33 @@ Configuration de la sécurite
       .oauth2ResourceServer()
       .jwt();```
 ```
-Configuration de la sécurite
+Configuration des routes (via code source)
+```
+ @Bean
+    public RouteLocator gatewayRoutes(RouteLocatorBuilder builder) {
 
+        logger.info("[Service GW Springboot] SpringCloudConfig : gatewayRoutes");
+
+        return builder.routes()
+                .route(r -> r.path("/security")
+                        .uri("http://dev2.neogiciel.com"))
+                        //.uri("http://localhost:8081"))
+                
+                //.route(r -> r.path("/test")
+                //        .uri("http://dev2.neogiciel.com"))
+
+                .build();
+    }
+```
+Configuration de la sécurite: (via yaml)
+```
+ routes:
+      - id: test
+        uri: http://dev2.neogiciel.com
+        predicates:
+        - Method=GET,POST
+        - Path=/test/**
+```
 Lancement de l'application Spring-boot<br>
 ```
 $ mvn  clean
